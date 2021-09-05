@@ -1,12 +1,34 @@
 package ro.mycodescool.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.time.LocalDate;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Products {
 
+    private int id;
+    private String name;
+    private int price;
+    private int weight;
+    private String description;
+    private String category;
+    private LocalDate date;
+    private int stock;
 
-    asdasdasdas
-    d
-            FDSf;'sfdews
-            '
-
-
+    public Products(String name, int price, int weight, String description, String category, LocalDate date, int stock) {
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
+        this.description = description;
+        this.category = category;
+        this.date = date;
+        this.stock = stock;
+    }
 }
