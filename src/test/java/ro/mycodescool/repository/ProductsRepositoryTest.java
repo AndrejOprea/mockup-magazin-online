@@ -72,12 +72,29 @@ class ProductsRepositoryTest {
         productsRepository.updateCat(5,"categoria 3");
 
 
+
+
     }
 
     @Test
     void test_updateDate(){
 
         ProductsRepository productsRepository = new ProductsRepository();
+
+        LocalDate localDate = LocalDate.of(2021,10,10);
+
+        productsRepository.updateDate(1,localDate);
+
+
+    }
+
+    @Test
+    void test_updateStock(){
+
+        ProductsRepository productsRepository = new ProductsRepository();
+        productsRepository.updateStock(1,150000);
+
+
 
 
     }

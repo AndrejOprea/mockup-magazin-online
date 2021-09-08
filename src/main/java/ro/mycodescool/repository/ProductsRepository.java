@@ -80,6 +80,15 @@ public class ProductsRepository extends SQL{
         executeStatement(updateDate);
     }
 
+    public void updateStock(int id, int newStock){
+
+        String updateStock = String.format("update magazin.products set stock=%d where id=%d",newStock,id);
+
+        executeStatement(updateStock);
+
+
+    }
+
 
 
 
