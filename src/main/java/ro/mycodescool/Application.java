@@ -1,5 +1,6 @@
 package ro.mycodescool;
 
+import ro.mycodescool.controller.ControllerProducts;
 import ro.mycodescool.model.Products;
 import ro.mycodescool.repository.ProductsRepository;
 
@@ -9,13 +10,14 @@ public class Application {
 
     public static void main(String[] args) {
 
-        ProductsRepository pr = new ProductsRepository();
+        ControllerProducts controllerProducts = new ControllerProducts();
 
-        LocalDate localDate = LocalDate.of(2021,12,22);
 
-        Products p1 = new Products("myproduct",2345,34,"celMaiBunProdus","categoria1",localDate,8900);
+        controllerProducts.seeZeroStock();
 
-        pr.insertProducts(p1);
+
+
+
 
     }
 }

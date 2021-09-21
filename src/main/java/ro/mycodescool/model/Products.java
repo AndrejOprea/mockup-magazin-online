@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Products {
+public class Products implements Comparable<Products> {
 
     private int id;
     private String name;
@@ -30,5 +30,16 @@ public class Products {
         this.category = category;
         this.date = date;
         this.stock = stock;
+    }
+
+
+    @Override
+    public int compareTo(Products o) {
+
+
+        return this.name.compareTo(o.getName());
+
+
+
     }
 }

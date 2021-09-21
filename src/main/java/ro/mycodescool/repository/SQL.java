@@ -11,7 +11,7 @@ public class SQL {
     private String user = "root";
     private String password = "Capitala1991";
     private Connection connection=null;
-    private Statement statement=null;
+    protected Statement statement=null;
 
     public SQL(){
 

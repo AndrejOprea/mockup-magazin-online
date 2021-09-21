@@ -1,8 +1,13 @@
 package ro.mycodescool.repository;
 
+import jdk.nashorn.internal.runtime.ListAdapter;
 import ro.mycodescool.model.Products;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductsRepository extends SQL{
 
@@ -28,6 +33,50 @@ public class ProductsRepository extends SQL{
         System.out.println(deInserat);executeStatement(deInserat);
 
     }
+
+    public ResultSet getAllProducts(){
+
+        executeStatement("select * from magazin.products");
+
+            try {
+                return statement.getResultSet();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+                return null;
+            }
+
+    }
+
+    public List<Products> allProducts(){
+
+        ResultSet resultSet = getAllProducts();
+
+        List<Products>myProductList = new ArrayList<>();
+
+       try{
+
+           while (resultSet.next()){
+
+               myProductList.add(
+                       new Products(resultSet.getInt(1),
+                               resultSet.getString(2),
+                               resultSet.getInt(3),
+                               resultSet.getInt(4),resultSet.getString(5),
+                               resultSet.getString(6),
+                               resultSet.getDate(7).toLocalDate(),
+                               resultSet.getInt(8)));
+                       }
+
+
+           }catch (Exception e){
+
+           e.printStackTrace();
+            }
+       return myProductList;
+    }
+
+
 
 
 

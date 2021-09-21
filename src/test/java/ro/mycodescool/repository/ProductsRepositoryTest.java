@@ -95,6 +95,18 @@ class ProductsRepositoryTest {
         productsRepository.updateStock(1,150000);
 
 
+    }
+
+    @Test
+    void test_allProducts(){
+
+        ProductsRepository productsRepository = new ProductsRepository();
+
+        for(Products p: productsRepository.allProducts()){
+
+            System.out.println(p);
+        }
+
 
 
     }
