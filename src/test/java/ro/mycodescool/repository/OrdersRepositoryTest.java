@@ -16,10 +16,10 @@ class OrdersRepositoryTest {
 
         OrdersRepository ordersRepository = new OrdersRepository();
 
-        Orders o1 = new Orders(4,20,"10DowningStreet","10DowningStreet","o@order.com", LocalDate.of(2021,04,12));
 
-        ordersRepository.insertOrders(o1);
+            Orders o1 = new Orders(7,20,"10DowningStreet","10DowningStreet","o@order.com", LocalDate.of(2021,04,12),true);
 
+            ordersRepository.insertOrders(o1);
 
 
     }
@@ -34,6 +34,16 @@ class OrdersRepositoryTest {
 
 
     }
+
+    @Test
+    void test_updateAmount(){
+
+        OrdersRepository ordersRepository = new OrdersRepository();
+
+        ordersRepository.updateAmount(3,78);
+    }
+
+
 
 
 
