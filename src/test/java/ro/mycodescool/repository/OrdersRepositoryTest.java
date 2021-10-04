@@ -43,6 +43,44 @@ class OrdersRepositoryTest {
         ordersRepository.updateAmount(3,78);
     }
 
+    @Test
+    void test_updateSA(){
+
+        OrdersRepository ordersRepository = new OrdersRepository();
+        ordersRepository.updateSA(3,"sunsetblv");
+    }
+
+    @Test
+    void test_updateOA(){
+
+        OrdersRepository ordersRepository = new OrdersRepository();
+        ordersRepository.updateOA(3,"sunsetblv");
+    }
+
+    @Test
+    void test_updatemail(){
+
+        OrdersRepository ordersRepository = new OrdersRepository();
+        ordersRepository.updateMail(3,"a@a.com");
+    }
+
+    @Test
+    void test_updateDate(){
+        OrdersRepository ordersRepository = new OrdersRepository();
+        ordersRepository.updatedate(3,"23-09-2023");
+
+    }
+
+    @Test
+    void test_updateStatus(){
+
+        OrdersRepository ordersRepository = new OrdersRepository();
+        ordersRepository.updateStatus(3,true);
+
+    }
+
+
+
 
 
 
