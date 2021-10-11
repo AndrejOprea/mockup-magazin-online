@@ -2,7 +2,11 @@ package ro.mycodescool.repository;
 
 import ro.mycodescool.model.Orders;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrdersRepository extends SQL {
 
@@ -10,7 +14,6 @@ public class OrdersRepository extends SQL {
     public OrdersRepository() {
         super();
     }
-
 
     public void insertOrders(Orders o){
 
@@ -80,6 +83,61 @@ public class OrdersRepository extends SQL {
         executeStatement(updateS);
 
     }
+
+
+    public ResultSet seeClientOrders(int id_Client){
+
+        String clientOrders = String.format("select customers.email client_mail,customers.full_name client_name,orders.id order_id" +
+                "from customers right join" +
+                "orders on customers.id = orders.customer_id where customer_id=%d order by orders.id desc ;",id_Client);
+
+        executeStatement(clientOrders);
+
+        try {
+
+            return statement.getResultSet();
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+            return null;
+        }
+
+
+
+    }
+
+
+    public List getList(int id){
+
+        ResultSet set = seeClientOrders(id);
+
+        List myList = new ArrayList();
+
+      try{
+
+          while(set.next()){
+
+              myList.add(set.getString())
+
+          }
+
+      }catch (Exception e){
+
+          e.printStackTrace();
+      }
+
+
+
+
+
+
+    }
+
+
+
+
+
 
 
 }
