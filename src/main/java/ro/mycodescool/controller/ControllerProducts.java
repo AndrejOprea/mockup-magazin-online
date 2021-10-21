@@ -39,7 +39,6 @@ public class ControllerProducts  {
 
         productsRepository.updateName(2,s);
 
-
     }
 
     //functionalitati
@@ -52,9 +51,7 @@ public class ControllerProducts  {
                 productsRepository.allProducts(),
                 new Products(name,1,1,"","", LocalDate.now(),1));
 
-
         return x>0;
-
 
     }
 

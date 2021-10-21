@@ -85,17 +85,18 @@ public class OrdersRepository extends SQL {
     }
 
 
-    public ResultSet seeClientOrders(int id_Client){
+    public ResultSet seeClientOrders(){
 
-        String clientOrders = String.format("select customers.email client_mail,customers.full_name client_name,orders.id order_id" +
-                "from customers right join" +
-                "orders on customers.id = orders.customer_id where customer_id=%d order by orders.id desc ;",id_Client);
+        String clientOrders = String.format("select customers.id client_id, customers.email client_mail ,customers.full_name client_name, orders.id order_id\n" +
+                "from customers right join\n" +
+                "orders on customers.id = orders.customer_id order by orders.id desc;");
 
         executeStatement(clientOrders);
 
         try {
 
             return statement.getResultSet();
+
         }catch (Exception e){
 
             e.printStackTrace();
@@ -103,22 +104,23 @@ public class OrdersRepository extends SQL {
             return null;
         }
 
-
-
     }
 
 
-    public List getList(int id){
+    public List getList(){
 
-        ResultSet set = seeClientOrders(id);
+        ResultSet set = seeClientOrders();
 
-        List myList = new ArrayList();
+        List<String> myList = new ArrayList<>();
 
       try{
 
           while(set.next()){
 
-              myList.add(set.getString())
+             myList.add(set.getString(1));
+             myList.add(set.getString(2));
+             myList.add(set.getString(3));
+             myList.add(set.getString(4));
 
           }
 
@@ -127,17 +129,9 @@ public class OrdersRepository extends SQL {
           e.printStackTrace();
       }
 
-
-
-
-
+        return myList;
 
     }
-
-
-
-
-
 
 
 }

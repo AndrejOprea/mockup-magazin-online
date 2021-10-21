@@ -79,6 +79,15 @@ class OrdersRepositoryTest {
 
     }
 
+    @Test
+    void test_seeClientOrders(){
+        OrdersRepository ordersRepository = new OrdersRepository();
+
+        ordersRepository.seeClientOrders();
+
+
+    }
+
 
 
 
