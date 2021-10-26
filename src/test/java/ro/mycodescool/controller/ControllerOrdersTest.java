@@ -2,6 +2,9 @@ package ro.mycodescool.controller;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerOrdersTest {
@@ -13,7 +16,10 @@ class ControllerOrdersTest {
 
         ControllerOrders controllerOrders = new ControllerOrders();
 
-        controllerOrders.clientOrders(5);
+        for(Map.Entry<String, List<String>> map : controllerOrders.clientOrders(5).entrySet()){
+
+            System.out.println(map.getKey() + "......" + map.getValue());
+        }
 
 
     }
