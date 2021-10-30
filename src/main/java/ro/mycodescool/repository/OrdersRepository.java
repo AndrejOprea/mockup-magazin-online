@@ -85,11 +85,11 @@ public class OrdersRepository extends SQL {
     }
 
 
-    public ResultSet seeClientOrders(){
+    public ResultSet seeClientOrders(int id){
 
         String clientOrders = String.format("select customers.id client_id, customers.email client_mail ,customers.full_name client_name, orders.id order_id\n" +
                 "from customers right join\n" +
-                "orders on customers.id = orders.customer_id order by orders.id desc;");
+                "orders on customers.id = orders.customer_id where customers.id=%d",id);
 
         executeStatement(clientOrders);
 
@@ -107,9 +107,9 @@ public class OrdersRepository extends SQL {
     }
 
 
-    public List getList(){
+    public List getList(int id){
 
-        ResultSet set = seeClientOrders();
+        ResultSet set = seeClientOrders(id);
 
         List<String> myList = new ArrayList<>();
 

@@ -83,7 +83,7 @@ class OrdersRepositoryTest {
     void test_seeClientOrders(){
         OrdersRepository ordersRepository = new OrdersRepository();
 
-        ordersRepository.seeClientOrders();
+        ordersRepository.seeClientOrders(5);
 
 
     }
