@@ -84,7 +84,6 @@ public class OrdersRepository extends SQL {
 
     }
 
-
     public ResultSet seeClientOrders(int id){
 
         String clientOrders = String.format("select customers.id client_id, customers.email client_mail ,customers.full_name client_name, orders.id order_id\n" +
@@ -105,7 +104,6 @@ public class OrdersRepository extends SQL {
         }
 
     }
-
 
     public List getList(int id){
 
@@ -132,6 +130,52 @@ public class OrdersRepository extends SQL {
         return myList;
 
     }
+
+    public ResultSet seeAllOrders(){
+
+        String all = "select * from orders";
+
+        executeStatement(all);
+
+        try {
+
+            return statement.getResultSet();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+
+
+    }
+
+    public List<Orders>ordersList(){
+
+        ResultSet resultSet = seeAllOrders();
+        List<Orders>list = new ArrayList<>();
+
+        try{
+
+            while (resultSet.next()){
+
+                list.add(new Orders(resultSet.getInt(1),resultSet.getInt(2),
+                        resultSet.getInt(3),resultSet.getString(4),
+                        resultSet.getString(5),resultSet.getString(6),
+                        resultSet.getDate(7).toLocalDate(),resultSet.getBoolean(8)));
+
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+
+
+
 
 
 }
