@@ -114,6 +114,48 @@ public class OdRepo extends SQL{
 
     }
 
+    public ResultSet allOrderDetails(){
+
+        String allOD = "select * from magazin.order_details";
+
+        executeStatement(allOD);
+
+        try{
+
+           return statement.getResultSet();
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public List<OrderDetails> getAllOd(){
+
+        ResultSet rs = allOrderDetails();
+
+        List<OrderDetails> list = new ArrayList<>();
+
+        try {
+
+            while (rs.next()){
+
+                list.add(new OrderDetails(rs.getInt(1),
+                        rs.getInt(2),rs.getInt(3),
+                        rs.getInt(4),rs.getInt(5)));
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return list;
+    }
+
 
 
 }
