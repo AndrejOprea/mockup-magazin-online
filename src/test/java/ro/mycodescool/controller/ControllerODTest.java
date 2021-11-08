@@ -34,8 +34,38 @@ class ControllerODTest {
 
 
         ControllerOD controllerOD = new ControllerOD();
-        OrderDetails od = new OrderDetails()
-        controllerOD.addOD();
+        OrderDetails od = new OrderDetails(2,3,4,5,6);
+        controllerOD.addOD(od);
+    }
+
+    @Test
+    void test_updateOID(){
+
+        ControllerOD controllerOD = new ControllerOD();
+        controllerOD.updateOID(11,7);
+
+
+    }
+
+    @Test
+    void test_updatePID(){
+
+        ControllerOD controllerOD = new ControllerOD();
+        controllerOD.updateProdID(11,6);
+    }
+
+    @Test
+    void test_updatePrice(){
+
+        ControllerOD controllerOD = new ControllerOD();
+        controllerOD.updatePrice(11,10);
+    }
+
+    @Test
+    void test_updateQty(){
+
+        ControllerOD controllerOD = new ControllerOD();
+        controllerOD.updateQty(11,100);
     }
 
 }
