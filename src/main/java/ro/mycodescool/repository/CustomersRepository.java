@@ -2,6 +2,12 @@ package ro.mycodescool.repository;
 
 import ro.mycodescool.model.Customers;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class CustomersRepository extends SQL{
 
     public CustomersRepository() {
@@ -71,6 +77,50 @@ public class CustomersRepository extends SQL{
 
         String updatePhone = String.format("update magazin.customers set phone='%s' where id=%d",newPhone,id);
         executeStatement(updatePhone);
+    }
+
+    public ResultSet allCustomers(){
+
+        String s = "select * from magazin.customers";
+
+        executeStatement(s);
+
+        try {
+
+           return statement.getResultSet();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+    public Set<Customers> getAllCustomers (){
+
+        ResultSet rs = allCustomers();
+
+        Set<Customers> mySet = new TreeSet<>();
+
+        try {
+
+            while (rs.next()){
+
+
+                mySet.add(new Customers(rs.getInt(1),rs.getString(2),
+                        rs.getString(3),rs.getString(4),
+                        rs.getString(5),rs.getString(6),
+                        rs.getString(7),rs.getString(8)));
+            }
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+return mySet;
     }
 
 }

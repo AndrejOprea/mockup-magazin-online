@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,5 +31,18 @@ public class Customers {
         this.default_shipping_address = default_shipping_address;
         this.country = country;
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customers)) return false;
+        Customers customers = (Customers) o;
+        return getEmail().equals(customers.getEmail()) && getPassword().equals(customers.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail(), getPassword());
     }
 }
