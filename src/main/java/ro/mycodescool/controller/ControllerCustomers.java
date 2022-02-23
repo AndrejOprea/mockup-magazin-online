@@ -2,6 +2,8 @@ package ro.mycodescool.controller;
 import ro.mycodescool.model.Customers;
 import ro.mycodescool.repository.CustomersRepository;
 
+import java.util.Set;
+
 public class ControllerCustomers {
 
     CustomersRepository customersRepository;
@@ -23,7 +25,11 @@ public class ControllerCustomers {
 
     }
 
-    public void reteriveCustomers(){
+    public Set<Customers> reteriveCustomers(){
+
+        CustomersRepository customersRepository = new CustomersRepository();
+
+       return customersRepository.getAllCustomers();
 
     }
 

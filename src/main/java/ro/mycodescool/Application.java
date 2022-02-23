@@ -3,28 +3,23 @@ package ro.mycodescool;
 import ro.mycodescool.controller.ControllerOD;
 import ro.mycodescool.controller.ControllerOrders;
 import ro.mycodescool.controller.ControllerProducts;
-import ro.mycodescool.model.Customers;
-import ro.mycodescool.model.OrderDetails;
-import ro.mycodescool.model.Products;
-import ro.mycodescool.repository.CustomersRepository;
-import ro.mycodescool.repository.OdRepo;
-import ro.mycodescool.repository.OrdersRepository;
-import ro.mycodescool.repository.ProductsRepository;
+import ro.mycodescool.model.*;
+import ro.mycodescool.repository.*;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        CustomersRepository cs = new CustomersRepository();
+       OptionsRepo optionsRepo = new OptionsRepo();
 
-        for(Customers c : cs.getAllCustomers()){
+       for(Options o: optionsRepo.myOptions()){
 
-            System.out.println(c);
-        }
-
+           System.out.println(o);
+       }
 
 
     }

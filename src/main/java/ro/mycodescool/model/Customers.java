@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customers {
+public class Customers implements Comparable {
 
     private int id;
     private String email;
@@ -33,16 +34,13 @@ public class Customers {
         this.phone = phone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customers)) return false;
-        Customers customers = (Customers) o;
-        return getEmail().equals(customers.getEmail()) && getPassword().equals(customers.getPassword());
-    }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getEmail(), getPassword());
+    public int compareTo(Object o) {
+
+        Customers c = (Customers) o;
+
+        return Comparator.comparing(Customers::getEmail)
+                .thenComparing(Customers::getPassword).compare(this,c);
     }
 }

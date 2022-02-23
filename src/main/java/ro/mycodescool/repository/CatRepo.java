@@ -2,6 +2,11 @@ package ro.mycodescool.repository;
 
 import ro.mycodescool.model.Categories;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CatRepo extends SQL{
 
     public CatRepo(){
@@ -38,6 +43,50 @@ public class CatRepo extends SQL{
 
         String updateDescrip = String.format("update magazin.categories set description='%s' where id=%d",newDesc,id);
         executeStatement(updateDescrip);
+
+    }
+
+    public ResultSet getAllCategories(){
+
+        String getCat = "select * from magazin.categories";
+
+        executeStatement(getCat);
+
+        try {
+
+            return statement.getResultSet();
+        }catch (SQLException e){
+
+            e.printStackTrace();
+            return null;
+        }
+
+
+
+    }
+
+    public List<Categories> myCat(){
+
+
+        ResultSet myResSet = getAllCategories();
+
+        List<Categories> myList = new ArrayList<>();
+
+        try {
+            while (myResSet.next()){
+
+                myList.add(new Categories(myResSet.getInt(1),myResSet.getString(2),
+                        myResSet.getString(3)));
+
+            }
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+
+        return myList;
+
+
 
     }
 
